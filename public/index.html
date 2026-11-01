@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4easy - Software that makes your life easy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Continuous End-to-End Background Animation Keyframes */
+        @keyframes floatHorizontal {
+            0% {
+                transform: translate(-10%, -10%) scale(1);
+            }
+            50% {
+                transform: translate(95vw, 40px) scale(1.3);
+            }
+            100% {
+                transform: translate(-10%, -10%) scale(1);
+            }
+        }
+
+        @keyframes floatReverse {
+            0% {
+                transform: translate(95vw, 60px) scale(1.2);
+            }
+            50% {
+                transform: translate(-15%, -40px) scale(0.85);
+            }
+            100% {
+                transform: translate(95vw, 60px) scale(1.2);
+            }
+        }
+
+        @keyframes floatDiagonal {
+            0% {
+                transform: translate(-10%, 90%) scale(0.8);
+            }
+            50% {
+                transform: translate(90vw, -50%) scale(1.35);
+            }
+            100% {
+                transform: translate(-10%, 90%) scale(0.8);
+            }
+        }
+
+        /* Accelerated animation timings (6s - 10s) for faster background motion */
+        .animate-bubble-end-to-end-1 {
+            animation: floatHorizontal 8s ease-in-out infinite;
+        }
+
+        .animate-bubble-end-to-end-2 {
+            animation: floatReverse 10s ease-in-out infinite;
+        }
+
+        .animate-bubble-end-to-end-3 {
+            animation: floatDiagonal 6.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- Navbar -->
+<nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        
+        <!-- Mobile Left: Hamburger Button (Visible on small screens) -->
+        <button id="menu-toggle" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors focus:outline-none">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <!-- Brand Logo (Centered on mobile, Left-aligned on desktop) -->
+        <div class="hidden md:flex items-center gap-3">
+            <a href="#home">
+                <img src="./media/4easy__3_-removebg-preview.png" alt="4Easy logo" class="h-10 w-auto object-contain">
+            </a>
+        </div>
+
+        <!-- Desktop Navigation Pill Bar (Hidden on mobile) -->
+        <div class="hidden md:flex items-center gap-2 bg-slate-50/80 p-1.5 rounded-full border border-slate-200/60 shadow-sm backdrop-blur-md">
+            <!-- Home Link -->
+            <a href="#home" class="group relative px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-all duration-300 rounded-full hover:bg-white hover:shadow-sm">
+                <span>Home</span>
+                <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 group-hover:w-1/2"></span>
+            </a>
+
+            <!-- Services Link with Interactive Badge -->
+            <a href="#services" class="group relative px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-all duration-300 rounded-full hover:bg-white hover:shadow-sm flex items-center gap-1.5">
+                <span>Services</span>
+                <span class="px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-100/80 rounded-full group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">New</span>
+                <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 group-hover:w-1/2"></span>
+            </a>
+
+            <!-- Reviews Link -->
+            <a href="#reviews" class="group relative px-4 py-2 text-sm font-semibold text-slate-600 hover:text-blue-600 transition-all duration-300 rounded-full hover:bg-white hover:shadow-sm">
+                <span>Reviews</span>
+                <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-blue-600 rounded-full transition-all duration-300 group-hover:w-1/2"></span>
+            </a>
+
+            <!-- Get Started CTA Button -->
+            <a href="#contact" class="group relative inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md shadow-blue-600/25 hover:shadow-lg hover:shadow-blue-600/40 hover:-translate-y-0.5 active:scale-95 ml-2 overflow-hidden">
+                <span class="relative z-10">Get Started</span>
+                <i class="fa-solid fa-arrow-right text-[10px] relative z-10 transition-transform duration-300 group-hover:translate-x-1"></i>
+                <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+            </a>
+        </div>
+
+        <!-- Mobile Right: WhatsApp Link Button (Visible on small screens) -->
+        <div class="flex items-center md:hidden">
+            <a href="https://wa.me/254712345678?text=Hello%204easy,%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center hover:bg-emerald-600 transition-all shadow-md shadow-emerald-500/20 active:scale-95">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.612-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Drawer (Toggles open/close on small screens) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-3">
+        <a href="#home" class="block py-2 text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors">Home</a>
+        <a href="#services" class="flex items-center justify-between py-2 text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors">
+            <span>Services</span>
+            <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-100 rounded-full">New</span>
+        </a>
+        <a href="#reviews" class="block py-2 text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors">Reviews</a>
+        <a href="#contact" class="block w-full text-center bg-blue-600 text-white font-semibold py-3 rounded-xl text-sm shadow-md shadow-blue-600/20 active:scale-95 transition-all">
+            Get Started
+        </a>
+    </div>
+</nav>
+
+    <!-- 1. HERO SECTION WITH CONTINUOUS END-TO-END MOVING BUBBLY BACKGROUND -->
+    <section id="home" class="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28 max-w-7xl mx-auto px-6">
+        <!-- Continuous End-to-End Floating Background Blobs -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden -z-10">
+            <div class="absolute top-0 -left-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-bubble-end-to-end-1"></div>
+            <div class="absolute top-1/4 -right-20 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-bubble-end-to-end-2"></div>
+            <div class="absolute bottom-0 -left-20 w-72 h-72 bg-cyan-400/20 rounded-full blur-2xl animate-bubble-end-to-end-3"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Hero Content -->
+            <div class="lg:col-span-7 space-y-6">
+                
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+                    Software that makes your life easy
+                </h1>
+                
+                <p class="text-lg text-slate-600 max-w-2xl leading-relaxed">
+                    We build intuitive software solutions tailored for modern business growth. From high-performance POS systems to high-converting custom websites for trainers and coaches.
+                </p>
+                
+                <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                    <a href="#services" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-7 py-3.5 rounded-full text-base shadow-lg shadow-blue-600/25 transition-all text-center hover:-translate-y-0.5">
+                        Our Services
+                    </a>
+                    <a href="#contact" class="inline-flex items-center justify-center gap-2 border-2 border-slate-200 hover:border-slate-300 bg-white text-slate-700 font-semibold px-7 py-3 rounded-full text-base transition-all hover:bg-slate-50 text-center">
+                        <span>Book Consultation</span>
+                        <i class="fa-solid fa-arrow-right text-xs text-slate-400"></i>
+                    </a>
+                </div>
+
+                <!-- Client avatars / Proof banner -->
+                <div class="pt-6 flex items-center gap-4 text-xs font-medium text-slate-500">
+                    <div class="flex -space-x-2 overflow-hidden">
+                        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Client Avatar">
+                        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Client Avatar">
+                        <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Client Avatar">
+                    </div>
+                    <span>Trusted by business owners & fitness trainers</span>
+                </div>
+            </div>
+
+            <!-- Right Hero Banner Graphics -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <div class="relative w-full max-w-md">
+                    <!-- Decorative background blob -->
+                    <div class="absolute top-0 right-0 -mr-6 -mt-6 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl"></div>
+                    
+                    <div class="bg-gradient-to-b from-slate-100 to-slate-200 rounded-3xl p-6 relative z-10 border border-white/60 shadow-xl overflow-hidden">
+                        <div class="relative rounded-2xl bg-slate-900 aspect-[4/5] overflow-hidden flex flex-col justify-between p-6 text-white shadow-inner">
+                            
+                            <!-- Background Image -->
+                            <img src="./media/landingpage_image-removebg-preview.png" alt="landing page image">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+
+                            <!-- Floating Badge Top Right -->
+                            <div class="relative z-10 self-end bg-blue-600 text-white p-3 rounded-2xl shadow-lg flex items-center justify-center">
+                                <i class="fa-solid fa-bolt text-lg"></i>
+                            </div>
+
+                            <!-- Floating Glass Stats Card Bottom -->
+                            <div class="relative z-10 bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 text-white space-y-2">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-300">Operations Status</span>
+                                    <span class="bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-medium">100% Easy</span>
+                                </div>
+                                <p class="text-sm font-semibold text-white">Streamline Retail & Booking Workflow</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1.5 OUR SERVICES SECTION -->
+    <section id="services" class="py-20 max-w-7xl mx-auto px-6">
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
+            <span class="bg-blue-600/10 text-blue-600 border border-blue-200 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+                What We Build
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                Tailored Software Built For Efficiency
+            </h2>
+            <p class="text-slate-600 text-sm sm:text-base">
+                Explore our core software offerings designed to elevate customer experiences and simplify operational workflows.
+            </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <!-- Service 1: POS Systems -->
+            <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all flex flex-col justify-between group">
+                <div class="space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors shadow-sm">
+                        <i class="fa-solid fa-cash-register text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Point of Sale (POS) Systems</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Lightning-fast retail and hospitality checkout solutions with live inventory tracking, receipt printing, and daily sales analytics.
+                    </p>
+                    <ul class="space-y-2 pt-2 text-xs font-medium text-slate-500">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-blue-600"></i> Real-time inventory sync
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-blue-600"></i> Offline mode support
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-blue-600"></i> Multi-branch management
+                        </li>
+                    </ul>
+                </div>
+                <div class="pt-6">
+                    <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 hover:text-blue-700 uppercase tracking-wider">
+                        <span>Get POS Quote</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 2: Trainer Websites -->
+            <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all flex flex-col justify-between group">
+                <div class="space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors shadow-sm">
+                        <i class="fa-solid fa-dumbbell text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Trainer & Coach Websites</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        High-converting custom web portals tailored for fitness trainers, coaches, and instructors to showcase packages and collect payments.
+                    </p>
+                    <ul class="space-y-2 pt-2 text-xs font-medium text-slate-500">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-blue-600"></i> Session scheduling & booking
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-blue-600"></i> Client portal & intake forms
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-blue-600"></i> Payment gateway integration
+                        </li>
+                    </ul>
+                </div>
+                <div class="pt-6">
+                    <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 hover:text-blue-700 uppercase tracking-wider">
+                        <span>Build Your Platform</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 3: Custom Web Applications -->
+            <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all flex flex-col justify-between group">
+                <div class="space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors shadow-sm">
+                        <i class="fa-solid fa-code text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Custom Web Apps</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Bespoke web and mobile applications designed to match unique business logic and modern desktop/mobile workflows.
+                    </p>
+                    <ul class="space-y-2 pt-2 text-xs font-medium text-slate-500">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-blue-600"></i> Full-stack architecture
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-blue-600"></i> Fast, responsive UI
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-blue-600"></i> Custom API integrations
+                        </li>
+                    </ul>
+                </div>
+                <div class="pt-6">
+                    <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 hover:text-blue-700 uppercase tracking-wider">
+                        <span>Consult Our Team</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 4: Automation & Email Systems -->
+            <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all flex flex-col justify-between group">
+                <div class="space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors shadow-sm">
+                        <i class="fa-solid fa-paper-plane text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Lead & Email Automation</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Automated backend mailers and CRM setups that instantly confirm inquiries, alert sales teams, and engage prospects.
+                    </p>
+                    <ul class="space-y-2 pt-2 text-xs font-medium text-slate-500">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-blue-600"></i> Express & Nodemailer engines
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-blue-600"></i> Instant team lead alerts
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-blue-600"></i> Automated customer receipts
+                        </li>
+                    </ul>
+                </div>
+                <div class="pt-6">
+                    <a href="#contact" class="inline-flex items-center gap-2 text-xs font-bold text-blue-600 hover:text-blue-700 uppercase tracking-wider">
+                        <span>Automate Workflow</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. REVIEWS / TESTIMONIALS SECTION -->
+    <section id="reviews" class="py-20 bg-slate-50 border-y border-slate-200/60 relative overflow-hidden">
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
+                <span class="bg-blue-600/10 text-blue-600 border border-blue-200 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+                    Client Success Stories
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                    Trusted by trainers & business owners
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    See how 4easy's software solutions are helping local businesses streamline operations and scale faster.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review Card 1 -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-1 text-amber-400">
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed italic">
+                            "The POS system built by 4easy completely transformed our checkout process. It’s fast, clean, and truly lives up to the name—it makes life easy!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                       <img src="https://static.vecteezy.com/system/resources/previews/077/970/221/large_2x/business-woman-portrait-and-happy-professional-in-office-brand-consultant-and-creative-worker-face-smile-and-confident-african-employee-campaign-specialist-and-pride-for-career-growth-in-kenya-photo.jpg" alt="Sarah Muthoni" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-900">Sarah Muthoni</h4>
+                            <p class="text-xs text-slate-500">Retail Boutique Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Card 2 -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-1 text-amber-400">
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed italic">
+                            "As a fitness trainer, having a custom website where clients can book sessions and view packages seamlessly has doubled my online bookings."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                        <img src="https://owaaga.com/assets/coach-new-haXAadzZ.jpg" alt="Kevin Kiprop" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-900">Kevin Kiprop</h4>
+                            <p class="text-xs text-slate-500">Professional Fitness Trainer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Card 3 -->
+                <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-1 text-amber-400">
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                            <i class="fa-solid fa-star text-sm"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed italic">
+                            "Top-tier support and clean coding standards. The 4easy team delivered our inventory management tool ahead of schedule. Highly recommended!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                       <img src="https://media.istockphoto.com/id/1653368202/photo/atrium-portrait-of-cheerful-kenyan-business-professional.jpg?s=612x612&w=0&k=20&c=GMEGHvhKewayec_K6iw9ATpIjWst8T4YvJihiBtT3CE=" alt="Brenda Akinyi" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <h4 class="text-sm font-semibold text-slate-900">Brenda Akinyi</h4>
+                            <p class="text-xs text-slate-500">Operations Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. CONTACT SECTION -->
+    <section id="contact" class="py-20 max-w-7xl mx-auto px-6">
+        <div class="bg-slate-900 text-white rounded-3xl p-8 sm:p-14 shadow-2xl relative overflow-hidden">
+            <div class="relative z-10 max-w-2xl mx-auto text-center space-y-6">
+                <span class="bg-blue-600/30 text-blue-400 border border-blue-500/30 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">Start Today</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Let's build something easy together</h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    Get in touch with the 4easy team today for a free consultation on POS systems or website design for trainers.
+                </p>
+
+                <form onsubmit="handleFormSubmit(event)" class="pt-4 flex flex-col gap-4 max-w-md mx-auto text-left">
+                    <!-- Full Name Field -->
+                    <div>
+                        <label for="name" class="block text-xs font-medium text-slate-300 mb-1.5 ml-1">Full Name</label>
+                        <input type="text" id="name" required placeholder="Enter your full name" class="w-full px-5 py-3 rounded-2xl bg-slate-800 border border-slate-700 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+
+                    <!-- Phone Number Field with Country Code -->
+                    <div>
+                        <label for="phone" class="block text-xs font-medium text-slate-300 mb-1.5 ml-1">Phone Number</label>
+                        <div class="flex gap-2">
+                            <select id="country-code" class="px-3 py-3 rounded-2xl bg-slate-800 border border-slate-700 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 shrink-0 cursor-pointer">
+                                <option value="+254">🇰🇪 +254 (KE)</option>
+                                <option value="+1">🇺🇸 +1 (US)</option>
+                                <option value="+44">🇬🇧 +44 (UK)</option>
+                                <option value="+91">🇮🇳 +91 (IN)</option>
+                                <option value="+971">🇦🇪 +971 (AE)</option>
+                                <option value="+27">🇿🇦 +27 (ZA)</option>
+                            </select>
+                            <input type="tel" id="phone" required placeholder="712 345 678" class="flex-grow px-5 py-3 rounded-2xl bg-slate-800 border border-slate-700 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div>
+                        <label for="email" class="block text-xs font-medium text-slate-300 mb-1.5 ml-1">Business Email</label>
+                        <input type="email" id="email" required placeholder="Enter your business email" class="w-full px-5 py-3 rounded-2xl bg-slate-800 border border-slate-700 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-7 py-3.5 rounded-2xl text-sm shadow-lg shadow-blue-600/30 transition-all text-center">
+                        Contact Us
+                    </button>
+                </form>
+
+                <!-- Alert message container -->
+                <div id="form-message" class="hidden mt-4 p-3 rounded-xl text-xs font-medium bg-emerald-900/80 border border-emerald-500/50 text-emerald-200">
+                    Thank you! The 4easy team will get back to you shortly.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CREATIVE FOOTER SECTION WITH SOCIAL LINKS -->
+    <footer class="bg-slate-900 text-slate-300 border-t border-slate-800 pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+                
+                <!-- Brand Column -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <img src="./media/4easy__3_-removebg-preview.png" alt="company logo" class="logo-img h-10 w-auto object-contain brightness-0 invert">
+                    </div>
+                    <p class="text-slate-400 text-sm max-w-sm">
+                        Software that makes your life easy. Delivering high-performance POS systems and custom website platforms for professional trainers.
+                    </p>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="md:col-span-4 flex flex-wrap sm:flex-nowrap gap-8">
+                    <div class="space-y-3">
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200">Solutions</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li><a href="#services" class="hover:text-blue-400 transition-colors">POS Systems</a></li>
+                            <li><a href="#services" class="hover:text-blue-400 transition-colors">Trainer Websites</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200">Company</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li><a href="#contact" class="hover:text-blue-400 transition-colors">Contact Us</a></li>
+                            <li><a href="#contact" class="hover:text-blue-400 transition-colors">Book a Demo</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Social & Contact Icons -->
+                <div class="md:col-span-3 space-y-4">
+                    <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200">Connect With Us</h4>
+                    <div class="flex items-center gap-3">
+                        <!-- Phone Link -->
+                        <a href="tel:+254712345678" aria-label="Call 4easy" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all shadow-sm">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                        </a>
+
+                        <!-- WhatsApp Link -->
+                        <a href="https://wa.me/254712345678?text=Hello%204easy,%20I%20would%20like%20to%20get%20started." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-emerald-600 hover:border-emerald-600 transition-all shadow-sm">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.612-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                            </svg>
+                        </a>
+
+                        <!-- TikTok Link -->
+                        <a href="https://tiktok.com/@4easy" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all shadow-sm">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 11-2.89-2.89c.28 0 .56.04.82.12V9.41a6.33 6.33 0 00-.82-.05A6.34 6.34 0 1015.82 15.7V9.01a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.44z"/>
+                            </svg>
+                        </a>
+
+                        <!-- LinkedIn Link -->
+                        <a href="https://linkedin.com/company/4easy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all shadow-sm">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.74a1.63 1.63 0 100 3.26 1.63 1.63 0 000-3.26z"/>
+                            </svg>
+                        </a>
+
+                        <!-- Twitter / X Link -->
+                        <a href="https://twitter.com/4easy" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all shadow-sm">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright Bar -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>© <span id="year"></span> 4easy Inc. All rights reserved.</p>
+                <p>Built with quality & simplicity in mind.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Client-side Logic -->
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close menu when clicking any mobile nav link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    });
+        // Set dynamic copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Contact Form Submission Handler
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const countryCode = document.getElementById('country-code').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const messageBox = document.getElementById('form-message');
+
+            try {
+                const response = await fetch('http://localhost:3000/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, countryCode, phone, email }),
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    messageBox.textContent = "Thank you! We've sent a confirmation email to you.";
+                    messageBox.className = "mt-4 p-3 rounded-xl text-xs font-medium bg-emerald-900/80 border border-emerald-500/50 text-emerald-200 block";
+                    event.target.reset();
+                } else {
+                    messageBox.textContent = result.message || "Something went wrong. Please try again.";
+                    messageBox.className = "mt-4 p-3 rounded-xl text-xs font-medium bg-rose-900/80 border border-rose-500/50 text-rose-200 block";
+                }
+            } catch (err) {
+                // Fallback for visual demonstration preview when backend isn't actively running
+                messageBox.textContent = "Thank you " + name + "! Request received (Preview Mode).";
+                messageBox.className = "mt-4 p-3 rounded-xl text-xs font-medium bg-emerald-900/80 border border-emerald-500/50 text-emerald-200 block";
+                event.target.reset();
+            }
+        }
+    </script>
+</body>
+</html>
